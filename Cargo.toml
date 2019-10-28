@@ -4,13 +4,20 @@ version = "0.1.0"
 authors = ["vcombey <vcombey@student.42.fr>"]
 edition = "2018"
 
+license = "MIT/Apache-2.0"
+
+repository = "https://github.com/vcombey/try_clone_derive.git"
+description = "a crate wich add a derive TryClone macro for the TryClone Trait of the fallible_allocation crate"
+readme = "README.md"
+keywords = ["fallible", "collections", "clone", "try_clone"]
+
 [lib]
 proc-macro = true
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-fallible_collections = { path = "../fallible_collections" }
+fallible_collections = { git = "https://github.com/vcombey/fallible_collections.git" }
 proc-macro2 = "0.4.30"
 proc-quote = "0.2.2"
 
