@@ -37,7 +37,7 @@ pub fn derive_try_clone(input: proc_macro::TokenStream) -> proc_macro::TokenStre
             };
             quote!(
                 impl#impl_generic fallible_collections::TryClone for #name<#(#generic),*> {
-                    fn try_clone(&self) -> core::result::Result<Self,alloc::collections::CollectionAllocErr> {
+                    fn try_clone(&self) -> core::result::Result<Self,alloc::collections::TryReserveError> {
                         Ok(
                                 #all_names
                         )
@@ -66,7 +66,7 @@ pub fn derive_try_clone(input: proc_macro::TokenStream) -> proc_macro::TokenStre
                     quote!(#name::#variant(#(#fields,)*) => #name::#variant(#(#fields_clone.try_clone()?,)*),)
                 }
                 Fields::Named(fields) => {
-                    let fields = fields.named.iter().map(|x| x.ident.clone());;
+                    let fields = fields.named.iter().map(|x| x.ident.clone());
                     let fields_clone = fields.clone();
                     let fields_clone2 = fields.clone();
                     let variant = x.ident.clone();
@@ -75,7 +75,7 @@ pub fn derive_try_clone(input: proc_macro::TokenStream) -> proc_macro::TokenStre
             });
             quote!(
                 impl fallible_collections::TryClone for #name {
-                    fn try_clone(&self) -> core::result::Result<Self,alloc::collections::CollectionAllocErr> {
+                    fn try_clone(&self) -> core::result::Result<Self,alloc::collections::TryReserveError> {
                         Ok(
                             match self {
                                 #( #all_names )*
