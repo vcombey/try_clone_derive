@@ -17,7 +17,7 @@ proc-macro = true
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-fallible_collections = { git = "https://github.com/vcombey/fallible_collections.git" }
+fallible_collections = "0.1.0"
 proc-macro2 = "0.4.30"
 proc-quote = "0.2.2"
 
