@@ -44,7 +44,7 @@ pub fn derive_try_clone(input: proc_macro::TokenStream) -> proc_macro::TokenStre
             };
             quote!(
                 impl#impl_generic fallible_collections::TryClone for #name<#(#generic),*> {
-                    fn try_clone(&self) -> core::result::Result<Self,alloc::collections::TryReserveError> {
+                    fn try_clone(&self) -> core::result::Result<Self,fallible_collections::TryReserveError> {
                         Ok(
                                 #all_names
                         )
@@ -82,7 +82,7 @@ pub fn derive_try_clone(input: proc_macro::TokenStream) -> proc_macro::TokenStre
             });
             quote!(
                 impl fallible_collections::TryClone for #name {
-                    fn try_clone(&self) -> core::result::Result<Self,alloc::collections::TryReserveError> {
+                    fn try_clone(&self) -> core::result::Result<Self,fallible_collections::TryReserveError> {
                         Ok(
                             match self {
                                 #( #all_names )*
